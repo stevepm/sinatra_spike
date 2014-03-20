@@ -7,11 +7,18 @@ class ItemList
     @items_array = []
   end
 
-  def list_items
+  def list_items(search)
     @file.each do |row|
-      @items_array << Item.new(row['name'], row['price'], row['description'])
+      if search.empty?
+        @items_array << Item.new(row['name'], row['price'], row['description'])
+      else
+        if row['name'].downcase.include?(search.downcase)
+          @items_array << Item.new(row['name'], row['price'], row['description'])
+        end
+      end
     end
     @items_array
   end
+
 
 end

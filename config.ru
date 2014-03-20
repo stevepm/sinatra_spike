@@ -10,6 +10,7 @@ get '/' do
   erb :index
 end
 
-get '/items.?:filter?' do
+get '/items' do
+  @search = params[:filter]
   erb :items
 end

@@ -7,8 +7,4 @@ class Item
     @description = description
   end
 
-  def self.name
-    @name
-  end
-
 end
