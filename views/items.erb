@@ -1,9 +1,10 @@
 <html>
   <body>
+  <a href="new">New</a>
   <ul>
-    <li>Item1</li>
-    <li>item2</li>
-    <li>Item3</li>
+  <% ItemsController.list_items.each do %>
+    <li><a href="item1"> <%= Item.description %></a></li>
+  <% end %>
   </ul>
 
 

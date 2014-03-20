@@ -1,4 +1,5 @@
 require 'sinatra'
+require '/controllers/items_controller'
 
 get '/' do
   erb :index
