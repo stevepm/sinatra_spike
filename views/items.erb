@@ -1,9 +1,11 @@
+
+
 <html>
   <body>
   <a href="new">New</a>
   <ul>
-  <% ItemsController.list_items.each do %>
-    <li><a href="item1"> <%= Item.description %></a></li>
+  <% [Item.new('Channa', '5.95', 'tastes good')].each do |item|%>
+    <li><a href="item1"><%= item.name %></a></li>
   <% end %>
   </ul>
 
