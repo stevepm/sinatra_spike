@@ -4,7 +4,7 @@
   <body>
   <a href="new">New</a>
   <ul>
-  <% [Item.new('Channa', '5.95', 'tastes good')].each do |item|%>
+  <% ItemList.new.list_items.each do |item|%>
     <li><a href="item1"><%= item.name %></a></li>
   <% end %>
   </ul>
