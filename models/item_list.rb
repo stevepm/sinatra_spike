@@ -22,7 +22,7 @@ class ItemList
   end
 
   def add_item(name)
-    if !name.empty?
+    if !name.to_s.empty?
       CSV.open(@file, 'a+') do |row|
         row << [self.return_next_id,"#{name}",]
       end
@@ -35,6 +35,22 @@ class ItemList
       id = row['id'].to_i
     end
     id + 1
+  end
+
+  def show_item(id)
+    CSV.foreach(@file, headers:true) do |row|
+      if row['id'].to_i == id.to_i
+        return row['name']
+      end
+    end
+  end
+
+  def find_id(name)
+    CSV.foreach(@file, headers:true) do |row|
+      if row['name'].to_s == name.to_s
+        return row['id'].to_s
+      end
+    end
   end
 
 end

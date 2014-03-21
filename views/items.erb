@@ -8,7 +8,7 @@
     <ul>
 
       <% menu.list_items(@search.to_s).each do |item|%>
-        <li><a href="item1"><%= item.name %></a></li>
+        <li><a href="items/<%= menu.find_id(item.name) %>"><%= item.name %></a></li>
       <% end %>
     </ul>
   </body>

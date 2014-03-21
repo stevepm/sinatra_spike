@@ -20,6 +20,11 @@ post '/items' do
   erb :items
 end
 
+get '/items/:id' do
+  @id = params[:id]
+  erb :show
+end
+
 get '/new' do
   erb :add_new_item
 end
