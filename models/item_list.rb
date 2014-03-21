@@ -1,24 +1,30 @@
 require 'csv'
 
 class ItemList
+  attr_reader :file
 
   def initialize
-    @file = CSV.open(File.expand_path('../../models/itemsdb.csv',__FILE__), headers: true)
+    @file = File.expand_path('../../models/itemsdb.csv',__FILE__)
     @items_array = []
   end
 
   def list_items(search)
-    @file.each do |row|
+    CSV.foreach(@file, headers: true) do |row|
       if search.empty?
-        @items_array << Item.new(row['name'], row['price'], row['description'])
+        @items_array << Item.new(row['name'])
       else
         if row['name'].downcase.include?(search.downcase)
-          @items_array << Item.new(row['name'], row['price'], row['description'])
+          @items_array << Item.new(row['name'])
         end
       end
     end
     @items_array
   end
 
+  def add_item(name)
+    CSV.open(@file, 'a+') do |row|
+      row << [name,]
+    end
+  end
 
 end

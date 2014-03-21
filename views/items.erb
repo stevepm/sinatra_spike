@@ -2,20 +2,14 @@
 
 <html>
   <body>
-  <a href="new">New</a>
-  <ul>
-  <% ItemList.new.list_items(@search.to_s).each do |item|%>
-    <li><a href="item1"><%= item.name %></a></li>
-  <% end %>
-  </ul>
+    <a href="new">New</a>
+    <% menu = ItemList.new %>
+    <% menu.add_item(@name) %>
+    <ul>
 
-
-
-
-
+      <% menu.list_items(@search.to_s).each do |item|%>
+        <li><a href="item1"><%= item.name %></a></li>
+      <% end %>
+    </ul>
   </body>
-
-
-
-
 </html>
