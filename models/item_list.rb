@@ -24,9 +24,17 @@ class ItemList
   def add_item(name)
     if !name.empty?
       CSV.open(@file, 'a+') do |row|
-        row << [name,]
+        row << [self.return_next_id,"#{name}",]
       end
     end
+  end
+
+  def return_next_id
+    id = 0
+    CSV.foreach(@file, headers: true) do |row|
+      id = row['id'].to_i
+    end
+    id + 1
   end
 
 end
