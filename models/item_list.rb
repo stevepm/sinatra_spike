@@ -45,6 +45,15 @@ class ItemList
     end
   end
 
+  def show_item?(id)
+    CSV.foreach(@file, headers:true) do |row|
+      if row['id'].to_i == id.to_i
+        return true
+      end
+    end
+    false
+  end
+
   def find_id(name)
     CSV.foreach(@file, headers:true) do |row|
       if row['name'].to_s == name.to_s

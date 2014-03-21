@@ -39,3 +39,7 @@ end
 get '/new' do
   erb :add_new_item
 end
+
+get '/error' do
+  erb :not_found
+end

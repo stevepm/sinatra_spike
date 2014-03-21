@@ -2,6 +2,11 @@
 
 
 <html>
+<head>
+  <% if menu.show_item?(@id) == false %>
+    <meta http-equiv="refresh" content="0; url=/error" />
+  <% end %>
+</head>
   <body>
   <% if @new_name != nil %>
     <% menu.edit_item(@id, @new_name) %>
