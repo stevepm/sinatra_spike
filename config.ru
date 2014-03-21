@@ -25,6 +25,17 @@ get '/items/:id' do
   erb :show
 end
 
+post '/items/:id' do
+  @id = params[:id]
+  @name = params[:name]
+  erb :show
+end
+
+get '/items/:id/edit' do
+  @id = params[:id]
+  erb :edit_items
+end
+
 get '/new' do
   erb :add_new_item
 end

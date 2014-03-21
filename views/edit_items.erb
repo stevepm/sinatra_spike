@@ -1,0 +1,10 @@
+<% menu = ItemList.new %>
+
+<html>
+<body>
+<form action="/items/<%= @id %>" method="post">
+  Name<input name="name" placeholder="<%= menu.show_item(@id) %>"><br>
+  <button> Submit </button>
+</form>
+</body>
+</html>

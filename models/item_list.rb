@@ -53,4 +53,10 @@ class ItemList
     end
   end
 
+  #def edit_items
+  #  CSV.foreach(@file, headers:true) do |row|
+  #    row <<
+  #  end
+  #end
+
 end
