@@ -22,8 +22,10 @@ class ItemList
   end
 
   def add_item(name)
-    CSV.open(@file, 'a+') do |row|
-      row << [name,]
+    if !name.empty?
+      CSV.open(@file, 'a+') do |row|
+        row << [name,]
+      end
     end
   end
 

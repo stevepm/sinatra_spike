@@ -12,6 +12,10 @@ end
 
 get '/items' do
   @search = params[:filter]
+  erb :items
+end
+
+post '/items' do
   @name = params[:name]
   erb :items
 end
