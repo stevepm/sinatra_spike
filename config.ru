@@ -27,7 +27,7 @@ end
 
 post '/items/:id' do
   @id = params[:id]
-  @name = params[:name]
+  @new_name = params[:new_name]
   erb :show
 end
 

@@ -23,8 +23,8 @@ class ItemList
 
   def add_item(name)
     if !name.to_s.empty?
-      CSV.open(@file, 'a+') do |row|
-        row << [self.return_next_id,"#{name}",]
+      CSV.open(@file, 'a+') do |csv|
+        csv << [self.return_next_id,"#{name}",]
       end
     end
   end
@@ -53,10 +53,50 @@ class ItemList
     end
   end
 
-  #def edit_items
-  #  CSV.foreach(@file, headers:true) do |row|
-  #    row <<
-  #  end
-  #end
+  def edit_item(id,new_name)
+    #CSV.foreach(@file, headers:true) do |row|
+    #  if row['id'].to_s == id.to_s
+    #    row['name'] = new_name.to_s
+    #  end
+    #end
+    #store_file_array = []
+    #
+    #CSV.foreach(@file, headers:true, return_headers:true) do |row|
+    #  if row['id'].to_s == id.to_s
+    #    store_file_array << [row['id'],[new_name.to_s]]
+    #  else
+    #    store_file_array << row
+    #  end
+    #end
+    #
+    #puts store_file_array
+
+    #ar = CSV.table(@file).to_a
+    #
+    #ar.each do |row|
+    #  if row.include?(id)
+    #    ar << row.split(',')[1] = new_name.to_s
+    #  else
+    #    ar << row
+    #  end
+    #end
+    #
+    #ar
+    new_items = ['id','name']
+    CSV.foreach(@file, headers:true) do |row|
+      if row['id'] == id.to_s
+        row['name'] = new_name.to_s
+        new_items << row
+      else
+        new_items << row
+      end
+    end
+
+    CSV.open(@file, 'wb') do |csv|
+      new_items.each do |row|
+        csv << row
+      end
+    end
+  end
 
 end

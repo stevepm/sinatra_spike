@@ -1,10 +1,14 @@
 <% menu = ItemList.new %>
 
-<html>
-<body>
-<%= menu.show_item(@id)%>
 
-<a href="/items/<%=@id%>/edit">Edit this item</a>
-</body>
+<html>
+  <body>
+  <% if @new_name.to_s != nil %>
+    <% menu.edit_item(@id, @new_name) %>
+  <% end %>
+  <%= menu.show_item(@id)%>
+  <br/>
+  <a href="/items/<%=@id%>/edit">Edit this item</a>
+  </body>
 </html>
 
