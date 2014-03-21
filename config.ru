@@ -1,4 +1,3 @@
-
 require './models/item'
 require './models/item_list'
 require 'sinatra'
@@ -17,18 +16,32 @@ end
 
 post '/items' do
   @name = params[:name]
-  erb :items
+  @id = params[:id]
+  menu = ItemList.new
+  menu.add_item(@name)
+
+  redirect '/items'
 end
 
 get '/items/:id' do
-  @id = params[:id]
-  erb :show
+  menu = ItemList.new
+  if menu.show_item?(params[:id])
+    erb :show, locals: {id: params[:id], menu: menu}
+  else
+    redirect '/items'
+  end
+end
+
+post '/items/:id/delete' do
+  menu = ItemList.new
+  menu.delete_item(params[:id])
+  redirect '/items'
 end
 
 post '/items/:id' do
   @id = params[:id]
   @new_name = params[:new_name]
-  erb :show
+  erb :show, locals: {id: params[:id], menu: ItemList.new}
 end
 
 get '/items/:id/edit' do

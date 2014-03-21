@@ -11,9 +11,11 @@ class ItemList
   def list_items(search)
     CSV.foreach(@file, headers: true) do |row|
       if search.empty?
+        #noinspection RubyArgCount
         @items_array << Item.new(row['name'])
       else
         if row['name'].downcase.include?(search.downcase)
+          #noinspection RubyArgCount
           @items_array << Item.new(row['name'])
         end
       end
@@ -69,6 +71,24 @@ class ItemList
         row['name'] = new_name.to_s
         new_items << [row['id'],row['name']]
       else
+        new_items << [row['id'],row['name']]
+      end
+    end
+
+    csv = CSV.open(@file, 'w')
+    new_items.each do |row|
+      csv << row
+    end
+    csv.close
+
+    csv
+
+  end
+
+  def delete_item(id)
+    new_items = [['id','name']]
+    CSV.foreach(@file, headers:true) do |row|
+      if row['id'] != id.to_s
         new_items << [row['id'],row['name']]
       end
     end

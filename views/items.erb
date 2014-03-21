@@ -1,10 +1,8 @@
-
+<% menu = ItemList.new %>
 
 <html>
   <body>
     <a href="new">New</a>
-    <% menu = ItemList.new %>
-    <% menu.add_item(@name) %>
     <ul>
       <% menu.list_items(@search.to_s).each do |item|%>
         <li><a href="items/<%= menu.find_id(item.name) %>"><%= item.name %></a></li>

@@ -1,19 +1,16 @@
-<% menu = ItemList.new %>
-
-
 <html>
 <head>
-  <% if menu.show_item?(@id) == false %>
-    <meta http-equiv="refresh" content="0; url=/error" />
-  <% end %>
 </head>
   <body>
   <% if @new_name != nil %>
-    <% menu.edit_item(@id, @new_name) %>
+    <% menu.edit_item(id, @new_name) %>
   <% end %>
-  <%= menu.show_item(@id)%>
+  <%= menu.show_item(id)%>
   <br/>
-  <a href="/items/<%=@id%>/edit">Edit this item</a>
+  <a href="/items/<%=id%>/edit">Edit this item</a>
+  <form action="/items/<%= id %>/delete" method="post">
+    <input type="submit" value="Delete">
+  </form>
   </body>
 </html>
 
