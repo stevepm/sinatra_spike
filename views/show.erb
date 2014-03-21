@@ -3,7 +3,7 @@
 
 <html>
   <body>
-  <% if @new_name.to_s != nil %>
+  <% if @new_name != nil %>
     <% menu.edit_item(@id, @new_name) %>
   <% end %>
   <%= menu.show_item(@id)%>

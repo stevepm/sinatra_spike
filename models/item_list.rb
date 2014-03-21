@@ -54,49 +54,24 @@ class ItemList
   end
 
   def edit_item(id,new_name)
-    #CSV.foreach(@file, headers:true) do |row|
-    #  if row['id'].to_s == id.to_s
-    #    row['name'] = new_name.to_s
-    #  end
-    #end
-    #store_file_array = []
-    #
-    #CSV.foreach(@file, headers:true, return_headers:true) do |row|
-    #  if row['id'].to_s == id.to_s
-    #    store_file_array << [row['id'],[new_name.to_s]]
-    #  else
-    #    store_file_array << row
-    #  end
-    #end
-    #
-    #puts store_file_array
-
-    #ar = CSV.table(@file).to_a
-    #
-    #ar.each do |row|
-    #  if row.include?(id)
-    #    ar << row.split(',')[1] = new_name.to_s
-    #  else
-    #    ar << row
-    #  end
-    #end
-    #
-    #ar
-    new_items = ['id','name']
+    new_items = [['id','name']]
     CSV.foreach(@file, headers:true) do |row|
       if row['id'] == id.to_s
         row['name'] = new_name.to_s
-        new_items << row
+        new_items << [row['id'],row['name']]
       else
-        new_items << row
+        new_items << [row['id'],row['name']]
       end
     end
 
-    CSV.open(@file, 'wb') do |csv|
-      new_items.each do |row|
-        csv << row
-      end
+    csv = CSV.open(@file, 'w')
+    new_items.each do |row|
+      csv << row
     end
+    csv.close
+
+    csv
+
   end
 
 end
